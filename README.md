@@ -1,4 +1,4 @@
-#generator-web-infans - a yeoman web app generator
+#generator-web-infans - a yeoman web app generator [![Build Status](https://travis-ci.org/chrisvanmook/SimpleParallax.svg?branch=master)](https://travis-ci.org/chrisvanmook/SimpleParallax) [![dependencies](https://david-dm.org/chrisvanmook/generator-web-infans.svg)](https://david-dm.org/chrisvanmook/generator-web-infans.svg)
 
 Web Infans is a yeoman generator that will help you bootstrap your webapp with gulp.
 Choose your favorite pre-processor and JS libraries and let Web Infans do the rest.
