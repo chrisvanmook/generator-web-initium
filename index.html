@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Web Infans - a yeoman webapp generator by chrisvanmook</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/chrisvanmook/generator-web-infans">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Web Infans - a yeoman webapp generator</h1>
+            <h2>Gulp, preprocessors, automated js / sass documentation &amp; styleguide, create a minified build folder etc...</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/chrisvanmook/generator-web-infans/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/chrisvanmook/generator-web-infans/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h1>
+<a id="generator-web-infans---a-yeoman-web-app-generator--" class="anchor" href="#generator-web-infans---a-yeoman-web-app-generator--" aria-hidden="true"><span class="octicon octicon-link"></span></a>generator-web-infans - a yeoman web app generator <a href="https://travis-ci.org/chrisvanmook/generator-web-infans"><img src="https://travis-ci.org/chrisvanmook/generator-web-infans.svg?branch=master" alt="Build Status"></a> <a href="https://david-dm.org/chrisvanmook/generator-web-infans.svg"><img src="https://david-dm.org/chrisvanmook/generator-web-infans.svg" alt="dependencies"></a>
+</h1>
+
+<p>Web Infans is a yeoman generator that will help you bootstrap your webapp with gulp.
+Choose your favorite pre-processor and JS libraries and let Web Infans do the rest.</p>
+
+<h2>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<p>Please make sure you have the following installed globally:</p>
+
+<ul>
+<li>NodeJS</li>
+<li><a href="npm">https://www.npmjs.com/</a></li>
+<li><a href="bower">http://bower.io/</a></li>
+</ul>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>SASS preprocessing</li>
+<li>Create CSS sourcemaps</li>
+<li>CSS Autoprefixer</li>
+<li>BrowserSync (livereload, sync on other devices)</li>
+<li>Twig Templating Engine</li>
+<li>JSDoc generator</li>
+<li>SASSdoc generator</li>
+<li>Styleguide generator</li>
+<li>JSHint</li>
+<li>Create a build folder:
+
+<ul>
+<li>Bump a version number (also git tag)</li>
+<li>Automatic image optimization</li>
+<li>Concat and minify JS</li>
+<li>Minifies HTML</li>
+<li>Copies all necessary files</li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="how-to-install" class="anchor" href="#how-to-install" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to install</h2>
+
+<p>Simply run <code>npm install -g generator-web-infans</code>. Alternatively, you can clone this repo and run <code>npm link</code>.</p>
+
+<h2>
+<a id="configurations" class="anchor" href="#configurations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configurations</h2>
+
+<p>In the generated <code>gulpfile.js</code> file, please adjust the global <code>var config</code> to your needs.</p>
+
+<h2>
+<a id="start" class="anchor" href="#start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start</h2>
+
+<p>Run <code>npm start</code> (or alternatively <code>gulp</code>) to start the server</p>
+
+<h2>
+<a id="how-to-build" class="anchor" href="#how-to-build" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to build</h2>
+
+<p>Run <code>gulp build</code>, this will create a <code>dist</code> folder with all the necessary files</p>
+
+<h2>
+<a id="todos" class="anchor" href="#todos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Todo's:</h2>
+
+<ul>
+<li>Support LESS and Stylus</li>
+<li>Add options for using sourcemaps, docs and stylesheet.</li>
+<li>Generate favicons / apple icons</li>
+<li>Unit tests</li>
+<li>Documentation</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>generator-web-infans is distributed under the MIT License. One file and one file only (src/js/app.js) is distributed under the slightly modified MIT License.</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/chrisvanmook">chrisvanmook</a> can be found on <a href="https://github.com/chrisvanmook/generator-web-infans">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="https://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
