@@ -1,0 +1,11 @@
+/.idea/
+/dist/
+/cache
+/node_modules/
+/src/css/
+/src/js/bundle.js
+/src/bower_components/
+/src/index.html
+/screenshots/
+/styleguide/
+/doc/

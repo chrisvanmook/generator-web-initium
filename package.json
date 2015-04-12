@@ -1,0 +1,39 @@
+{
+  "name": "generator-web-infans",
+  "version": "0.1.0",
+  "description": "",
+  "files": [
+    "app",
+    "router"
+  ],
+  "main": "app/index.js",
+  "keywords": [
+    "yeoman-generator",
+    "front-end",
+    "web",
+    "gulp",
+    "boilerplate",
+    "starters"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.19.1"
+  },
+  "peerDependencies": {
+    "yo": ">=1.0.0",
+    "gulp": ">=3.5.0"
+  },
+  "author": "Chris van Mook",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chrisvanmook/generator-web-infans.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chrisvanmook/generator-web-infans/issues"
+  },
+  "homepage": "https://github.com/chrisvanmook/generator-web-infans",
+  "scripts": {
+    "test": "gulp build",
+    "postinstall": "node_modules/.bin/bower install"
+  }
+}

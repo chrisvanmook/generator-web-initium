@@ -1,0 +1,15 @@
+{
+  "assets_dir": "./assets",
+  "header_1": "Welcome to web infans!"
+  "portfolio": [
+    {
+      "title": "Item 1"
+    },
+    {
+      "title": "Item 2"
+    },
+    {
+      "title": "Item 3"
+    }
+  ]
+}

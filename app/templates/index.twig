@@ -1,0 +1,25 @@
+{% extends '../layout.twig' %}
+
+{% block main_content %}
+
+{% include '../partials/nav.twig' %}
+
+<section>
+  <header>
+    <h1 class="h2">{{ header_1 }}</h1>
+  </header>
+</section>
+<section>
+
+<ul class="work">
+  {% for item in portfolio %}
+  <li>
+    <h3>{{ item.title }}</h3>
+  </li>
+  {% endfor %}
+</ul>
+</section>
+
+{% include '../partials/footer.twig' %}
+
+{% endblock %}
