@@ -27,10 +27,10 @@ Please make sure you have the following installed globally:
     - Copies all necessary files
 
 ## How to install
-Make sure you are in the roots folder, then simply run `npm install`
+Simply run `npm install -g generator-web-infans`. Alternatively, you can clone this repo and run `npm link`.
 
 ## Configurations
-In the `gulpfile.js` file, please adjust the global `var config` to your needs.
+In the generated `gulpfile.js` file, please adjust the global `var config` to your needs.
 
 ## Start
 Run `npm start` (or alternatively `gulp`) to start the server
@@ -40,6 +40,7 @@ Run `gulp build`, this will create a `dist` folder with all the necessary files
 
 ## Todo's:
 - Support LESS and Stylus
+- Add options for using sourcemaps, docs and stylesheet.
 - Generate favicons / apple icons
 - Unit tests
 - Documentation
