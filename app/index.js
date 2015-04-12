@@ -10,9 +10,16 @@ module.exports = generators.Base.extend({
   constructor: function () {
     // Calling the super constructor is important so our generator is correctly set up
     generators.Base.apply(this, arguments);
+    this.destinationRoot('./');
+    this.option('skip-install', {
+      desc: 'Skips the installation of dependencies',
+      type: Boolean
+    });
 
-    // Next, add your custom code
-    this.option('coffee'); // This method adds support for a `--coffee` flag
+    this.option('skip-welcome-message', {
+      desc: 'Skips the welcome message',
+      type: Boolean
+    });
   },
 
   initializing: function () {
@@ -177,11 +184,11 @@ module.exports = generators.Base.extend({
     },
 
     js: function () {
-      this.write("src/js/main.js", "");
+      this.write("./src/js/main.js", "");
     },
 
     html: function () {
-      var viewDir = "src/views/",
+      var viewDir = "./src/views/",
         indexDir = viewDir + "pages/",
         partialsDir = viewDir + "partials/",
         partials = {
@@ -201,19 +208,21 @@ module.exports = generators.Base.extend({
   install: function () {
 
     // perform a npm install
-    this.installDependencies({
-      bower: false // package should contain postinstall: bower install
-    });
+    if (!this.options['skip-install']) {
+      this.installDependencies({
+        bower: false, // package should contain postinstall: bower install,
+        skipMessage: this.options['skip-install-message']
+      });
+    }
 
     this.on('end', function () {
-      //this.spawnCommand('npm', ['install']);
 
-      // wire Bower packages to .html
+      // wire Bower packages to html file
       wiredep({
-        directory: 'src/bower_components',
-        bowerJson: JSON.parse(fs.readFileSync('./bower.json')),
+        directory: this.destinationRoot() + '/src/bower_components',
+        bowerJson: this.destinationPath('bower.json'),
         ignorePath: /^(\.\.\/)*\.\./,
-        src: 'src/views/layout.twig',
+        src: this.destinationRoot() + '/src/views/layout.twig',
         exclude: []
       });
 
