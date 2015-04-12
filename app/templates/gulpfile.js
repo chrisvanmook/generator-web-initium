@@ -1,5 +1,6 @@
 (function () {
 	/* global require, console */
+  // generated on <%= (new Date).toISOString().split('T')[0] %> using <%= pkg.name %> <%= pkg.version %>
 	'use strict';
 
 	var gulp = require('gulp'),

@@ -1,8 +1,5 @@
 #generator-web-infans - a yeoman web app generator
 
-Web Infans is a yeoman generator that will help you bootstrap your webapp with gulp.
-Choose your favorite pre-processor and JS libraries and let Web Infans do the rest.
-
 ##Dependencies
 Please make sure you have the following installed globally:
 - NodeJS
@@ -37,12 +34,6 @@ Run `npm start` (or alternatively `gulp`) to start the server
 
 ## How to build
 Run `gulp build`, this will create a `dist` folder with all the necessary files
-
-## Todo's:
-- Support LESS and Stylus
-- Generate favicons / apple icons
-- Unit tests
-- Documentation
 
 ## License
 generator-web-infans is distributed under the MIT License. One file and one file only (src/js/app.js) is distributed under the slightly modified MIT License.

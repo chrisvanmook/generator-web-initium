@@ -1,4 +1,9 @@
-var generators = require('yeoman-generator');
+'use strict';
+
+var generators = require('yeoman-generator'),
+  wiredep = require('wiredep'),
+  fs = require('fs'),
+  yosay = require('yosay');
 
 module.exports = generators.Base.extend({
   // The name `constructor` is important here
@@ -16,15 +21,33 @@ module.exports = generators.Base.extend({
 
   prompting: function () {
     var done = this.async();
-
-    if (!this.options['skip-welcome-message']) {
-      //this.log(yosay('\'Allo \'allo! Out of the box I include HTML5 Boilerplate, jQuery, and a gulpfile.js to build your app.'));
-    }
-
+    this.log(yosay("Welcome to Web Infans, a generator that will help you bootstrap your webapp within a few seconds!"));
     var prompts = [{
       type: 'textfield',
+      name: 'appAuthor',
+      message: 'What is your name?'
+    }, {
+      type: 'textfield',
       name: 'appName',
-      message: 'What is the name of your webapp?'
+      message: 'What is the name of your webapp?',
+      default: 'webapp'
+    }, {
+      type: 'textfield',
+      name: 'appDesc',
+      message: 'Describe your webapp:'
+    }, {
+      type: 'textfield',
+      name: 'appLicense',
+      message: 'License:',
+      default: 'MIT'
+    }, {
+      type: 'textfield',
+      name: 'appRepo',
+      message: 'Your git repository:'
+    }, {
+      type: 'textfield',
+      name: 'analyticsID',
+      message: 'What is your Google Analytics ID?'
     }, {
       type: 'list',
       name: 'preprocessor',
@@ -33,42 +56,44 @@ module.exports = generators.Base.extend({
         name: 'Sass',
         value: 'sass',
         checked: true
-      }, {
-        name: 'Less',
-        value: 'less',
-        checked: false
-      }, {
-        name: 'Stylus',
-        value: 'stylus',
-        checked: false
-      }, {
-        name: 'None',
-        value: 'noPreprocessor',
-        checked: false
-      }]
+      }
+        //  , {
+        //  name: 'Less',
+        //  value: 'less',
+        //  checked: false
+        //}, {
+        //  name: 'Stylus',
+        //  value: 'stylus',
+        //  checked: false
+        //}, {
+        //  name: 'None',
+        //  value: 'noPreprocessor',
+        //  checked: false
+        //}
+      ]
     }, {
       type: 'checkbox',
       name: 'javascript',
-      message: 'Which javascript libraries do you want to include',
+      message: 'Which javascript libraries do you want to use',
       choices: [{
         name: 'jQuery',
-        value: 'includejQuery',
+        value: 'usejQuery',
         checked: true
       }, {
         name: 'Modernizr',
-        value: 'includeModernizr',
+        value: 'useModernizr',
         checked: true
       }, {
         name: 'FastClick',
-        value: 'includeFastClick',
+        value: 'useFastClick',
         checked: true
       }, {
         name: 'HTML5Shiv',
-        value: 'includeHTML5Shiv',
+        value: 'useHTML5Shiv',
         checked: true
       }, {
         name: 'RespondJS',
-        value: 'includeRespondJS',
+        value: 'useRespondJS',
         checked: true
       }]
     }];
@@ -80,24 +105,27 @@ module.exports = generators.Base.extend({
         return jsLibs.indexOf(js) !== -1;
       };
 
+      this.appAuthor = answers.appAuthor;
       this.appName = answers.appName;
+      this.appDesc = answers.appDesc;
+      this.appRepo = answers.appRepo;
+      this.appLicense = answers.appLicense;
+
+      this.analyticsID = answers.analyticsID;
       this.preprocessor = answers.preprocessor;
 
-      this.includejQuery = hasjsLib('includejQuery');
-      this.includeModernizr = hasjsLib('includeModernizr');
-      this.includeHTML5Shiv = hasjsLib('includeHTML5Shiv');
-      this.includeRespondJS = hasjsLib('includeRespondJS');
+      this.usejQuery = hasjsLib('usejQuery');
+      this.useModernizr = hasjsLib('useModernizr');
+      this.useFastClick = hasjsLib('useFastClick');
+      this.useHTML5Shiv = hasjsLib('useHTML5Shiv');
+      this.useRespondJS = hasjsLib('useRespondJS');
 
       done();
     }.bind(this));
-
-
   },
 
   writing: {
     gulpfile: function () {
-      console.log(this.preprocessor);
-      console.log(this.appName);
       this.template('gulpfile.js');
     },
 
@@ -113,6 +141,10 @@ module.exports = generators.Base.extend({
     bower: function () {
       this.copy('bowerrc', '.bowerrc');
       this.template('bower.json');
+    },
+
+    markdown: function () {
+      this.copy('readme.md', 'README.MD');
     },
 
     jshint: function () {
@@ -144,10 +176,50 @@ module.exports = generators.Base.extend({
       //this.copy(css, 'app/styles/' + css);
     },
 
+    js: function () {
+      this.write("src/js/main.js", "");
+    },
+
     html: function () {
-      this.template("index.twig");
-      this.copy("index.json");
+      var viewDir = "src/views/",
+        indexDir = viewDir + "pages/",
+        partialsDir = viewDir + "partials/",
+        partials = {
+          nav: "<nav></nav>",
+          footer: "<footer></footer>"
+        };
+
+      this.template("layout.twig", viewDir + "layout.twig");
+      this.copy("index.twig", indexDir + "index.twig");
+      this.copy("index.json", indexDir + "index.json");
+
+      this.write(partialsDir + "nav.twig", partials.nav);
+      this.write(partialsDir + "footer.twig", partials.footer);
     }
+  },
+
+  install: function () {
+
+    // perform a npm install
+    this.installDependencies({
+      bower: false // package should contain postinstall: bower install
+    });
+
+    this.on('end', function () {
+      //this.spawnCommand('npm', ['install']);
+
+      // wire Bower packages to .html
+      wiredep({
+        directory: 'src/bower_components',
+        bowerJson: JSON.parse(fs.readFileSync('./bower.json')),
+        ignorePath: /^(\.\.\/)*\.\./,
+        src: 'src/views/layout.twig',
+        exclude: []
+      });
+
+      this.log(yosay("All done! Please run `gulp` to serve your brand new web app!"));
+
+    }.bind(this));
   }
 
 });
