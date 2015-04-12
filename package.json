@@ -35,6 +35,9 @@
   },
   "homepage": "https://github.com/chrisvanmook/generator-web-infans",
   "scripts": {
-    "test": ""
+    "test": "mocha --reporter spec"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.4"
   }
 }
