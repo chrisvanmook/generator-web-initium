@@ -1,5 +1,5 @@
 # generator-web-initium - a yeoman web app generator
-[![Build Status](https://travis-ci.org/chrisvanmook/generator-web-initium.svg?branch=master)](https://travis-ci.org/chrisvanmook/generator-web-initium) [![dependencies](https://david-dm.org/chrisvanmook/generator-web-initium.svg)](https://david-dm.org/chrisvanmook/generator-web-initium.svg)
+[![Build Status](https://travis-ci.org/chrisvanmook/generator-web-initium.svg?branch=master)](https://travis-ci.org/chrisvanmook/generator-web-initium) [![dependencies](https://david-dm.org/chrisvanmook/generator-web-initium.svg)](https://david-dm.org/chrisvanmook/generator-web-initium.svg) [![Coverage Status](https://coveralls.io/repos/chrisvanmook/generator-web-initium/badge.svg)](https://coveralls.io/r/chrisvanmook/generator-web-initium)
 
 Web Initium is a yeoman generator that will help you bootstrap your webapp with gulp.
 Choose your favorite pre-processor and JS libraries and let Web Initium do the rest.
