@@ -36,10 +36,13 @@
   },
   "homepage": "https://github.com/chrisvanmook/generator-web-initium",
   "scripts": {
-    "test": "mocha --reporter spec --no-timeouts"
+    "test": "mocha --reporter spec --no-timeouts && npm run coverage",
+    "coverage": "./node_modules/.bin/istanbul cover -x 'test/**' --include-all-sources ./node_modules/mocha/bin/_mocha -- --reporter dot"
   },
   "devDependencies": {
     "coveralls": "^2.11.2",
-    "mocha": "^2.2.4"
+    "istanbul": "^0.3.13",
+    "mocha": "^2.2.4",
+    "mocha-lcov-reporter": "0.0.2"
   }
 }
