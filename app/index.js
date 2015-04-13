@@ -28,7 +28,7 @@ module.exports = generators.Base.extend({
 
   prompting: function () {
     var done = this.async();
-    this.log(yosay("Welcome to Web Infans, a generator that will help you bootstrap your webapp within a few seconds!"));
+    this.log(yosay("Welcome to Web Initium, a generator that will help you bootstrap your webapp within a few seconds!"));
     var prompts = [{
       type: 'textfield',
       name: 'appAuthor',
@@ -151,7 +151,7 @@ module.exports = generators.Base.extend({
     },
 
     markdown: function () {
-      this.copy('readme.md', 'README.MD');
+      this.template('readme.md', 'README.MD');
     },
 
     jshint: function () {

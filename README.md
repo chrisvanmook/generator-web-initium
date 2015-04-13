@@ -1,8 +1,8 @@
-# generator-web-infans - a yeoman web app generator
-[![Build Status](https://travis-ci.org/chrisvanmook/generator-web-infans.svg?branch=master)](https://travis-ci.org/chrisvanmook/generator-web-infans) [![dependencies](https://david-dm.org/chrisvanmook/generator-web-infans.svg)](https://david-dm.org/chrisvanmook/generator-web-infans.svg)
+# generator-web-initium - a yeoman web app generator
+[![Build Status](https://travis-ci.org/chrisvanmook/generator-web-initium.svg?branch=master)](https://travis-ci.org/chrisvanmook/generator-web-initium) [![dependencies](https://david-dm.org/chrisvanmook/generator-web-initium.svg)](https://david-dm.org/chrisvanmook/generator-web-initium.svg)
 
-Web Infans is a yeoman generator that will help you bootstrap your webapp with gulp.
-Choose your favorite pre-processor and JS libraries and let Web Infans do the rest.
+Web Initium is a yeoman generator that will help you bootstrap your webapp with gulp.
+Choose your favorite pre-processor and JS libraries and let Web Initium do the rest.
 
 ## Dependencies
 Please make sure you have the following installed globally:
@@ -28,7 +28,7 @@ Please make sure you have the following installed globally:
     - Copies all necessary files
 
 ## How to install
-Simply run `npm install -g generator-web-infans`. Alternatively, you can clone this repo and run `npm link`.
+Simply run `npm install -g generator-web-initium`. Alternatively, you can clone this repo and run `npm link`.
 
 ## Configurations
 In the generated `gulpfile.js` file, please adjust the global `var config` to your needs.
@@ -47,4 +47,4 @@ Run `gulp build`, this will create a `dist` folder with all the necessary files
 - Documentation
 
 ## License
-generator-web-infans is distributed under the MIT License.
+generator-web-initium is distributed under the MIT License.

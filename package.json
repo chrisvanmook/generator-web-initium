@@ -1,5 +1,5 @@
 {
-  "name": "generator-web-infans",
+  "name": "generator-web-initium",
   "version": "0.0.2",
   "description": "A yeoman generator that will help you bootstrap your webapp with gulp.",
   "files": [
@@ -29,12 +29,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chrisvanmook/generator-web-infans.git"
+    "url": "https://github.com/chrisvanmook/generator-web-initium.git"
   },
   "bugs": {
-    "url": "https://github.com/chrisvanmook/generator-web-infans/issues"
+    "url": "https://github.com/chrisvanmook/generator-web-initium/issues"
   },
-  "homepage": "https://github.com/chrisvanmook/generator-web-infans",
+  "homepage": "https://github.com/chrisvanmook/generator-web-initium",
   "scripts": {
     "test": "mocha --reporter spec --no-timeouts"
   },

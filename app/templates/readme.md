@@ -1,12 +1,12 @@
-#generator-web-infans - a yeoman web app generator
+# <%= appName %> - <%= appDesc %>
 
-##Dependencies
+## Dependencies
 Please make sure you have the following installed globally:
-- NodeJS
+- [https://nodejs.org/](NodeJS)
 - [https://www.npmjs.com/](npm)
 - [http://bower.io/](bower)
 
-##Features
+## Features
 - SASS preprocessing
 - Create CSS sourcemaps
 - CSS Autoprefixer
@@ -34,6 +34,3 @@ Run `npm start` (or alternatively `gulp`) to start the server
 
 ## How to build
 Run `gulp build`, this will create a `dist` folder with all the necessary files
-
-## License
-generator-web-infans is distributed under the MIT License. One file and one file only (src/js/app.js) is distributed under the slightly modified MIT License.
