@@ -39,6 +39,7 @@
     "test": "mocha --reporter spec --no-timeouts"
   },
   "devDependencies": {
+    "coveralls": "^2.11.2",
     "mocha": "^2.2.4"
   }
 }
