@@ -1,38 +1,33 @@
 /*global describe, beforeEach, it */
 'use strict';
-var path = require('path');
-var helpers = require('yeoman-generator').test;
-var assert = require('yeoman-generator').assert;
+var path = require('path'),
+  fs = require('fs-extra'),
+  helpers = require('yeoman-generator').test,
+  assert = require('yeoman-generator').assert;
+
+var mockPrompt = {
+  appAuthor: 'Chris',
+  appName: 'Test',
+  appDesc: 'Blablabla',
+  appLicense: 'Copyright',
+  appRepo: 'http://github.com/chrisvanmook/generator-web-infans.git',
+  analyticsID: 'UA-12345678',
+  preprocessor: ['sass'],
+  javascript: ['usejQuery']
+};
 
 describe('Gulp webapp generator test', function () {
   beforeEach(function (done) {
-    helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-      if (err) {
-        done(err);
-        return;
-      }
 
-      this.webapp = helpers.createGenerator('web-infans', [
-        '../../app', [
-          helpers.createDummyGenerator(),
-          'mocha:app'
-        ]
-      ]);
-      this.webapp.options['skip-install'] = true;
-
-      helpers.mockPrompt(this.webapp, {
-        appAuthor: 'Chris',
-        appName: 'Test',
-        appDesc: 'Blablabla',
-        appLicense: 'Copyright',
-        appRepo: 'git@github.com:chrisvanmook/generator-web-infans.git',
-        analyticsID: '12345678',
-        preprocessor: ['sass'],
-        javascript: ['usejQuery']
-      });
-
-      done();
-    }.bind(this));
+    helpers.run(path.join(__dirname, '../app'))
+      .inDir(path.join(__dirname, './temp'), function (dir) {
+        // Mock installation bower files
+        fs.createFileSync("./src/bower_components/jquery/dist/jquery.js");
+        fs.writeJsonSync("./src/bower_components/jquery/bower.json", {name: 'jquery', main: "dist/jquery.js"});
+      })
+      .withArguments(['skip-install'])
+      .withPrompts(mockPrompt)
+      .on('end', done);
   });
 
   describe('File Creation', function () {
@@ -42,7 +37,7 @@ describe('Gulp webapp generator test', function () {
       this.app = require('../app');
     });
 
-    it('creates expected files', function (done) {
+    it('should create the expected files', function () {
       var expected = [
         '.bowerrc',
         '.editorconfig',
@@ -59,37 +54,48 @@ describe('Gulp webapp generator test', function () {
         'src/views/layout.twig'
       ];
 
-      this.webapp.run(function () {
-        assert.file(expected);
-        done();
-      });
+      assert.file(expected);
     });
   });
 
+
   describe('File Customization', function () {
 
-    it('should update bower.js with prompt data', function (done) {
-      this.webapp.run(function () {
-        assert.fileContent('bower.json', /['|"]*name['|"]*[ ]*:[ ]*['|"]Test['|"]/);
-        //assert.fileContent('bower.json', /['|"]*description['|"]*[ ]*:[ ]*['|"]Blablabla['|"]/);
-        assert.fileContent('bower.json', /['|"]*authors['|"]*[ ]*:[ ]*['|"]Chris['|"]/);
-        assert.fileContent('bower.json', /['|"]*license['|"]*[ ]*:[ ]*['|"]Copyright['|"]/);
-        done();
-      });
+    it('should update bower.js with prompt data', function () {
+      assert.fileContent('bower.json', /['|"]*name['|"]*[ ]*:[ ]*['|"]Test['|"]/);
+      assert.fileContent('bower.json', /['|"]*description['|"]*[ ]*:[ ]*['|"]Blablabla['|"]/);
+      assert.fileContent('bower.json', /['|"]*license['|"]*[ ]*:[ ]*['|"]Copyright['|"]/);
     });
 
-    it('should update package.json with prompt data', function (done) {
-      this.webapp.run(function () {
-        assert.fileContent('package.json', /['|"]*name['|"]*[ ]*:[ ]*['|"]Test['|"]/);
-        //assert.fileContent('package.json', /['|"]*title['|"]*[ ]*:[ ]*['|"]Test['|"]/);
-        assert.fileContent('package.json', /['|"]*description['|"]*[ ]*:[ ]*['|"]Blablabla['|"]/);
-        assert.fileContent('package.json', /['|"]*main['|"]*[ ]*:[ ]*['|"]app\/index.js['|"]/);
-        assert.fileContent('package.json', /['|"]*url['|"]*[ ]*:[ ]*['|"]http:\/\/github.com['|"]/);
-        assert.fileContent('package.json', /['|"]*url['|"]*[ ]*:[ ]*['|"]http:\/\/github.com\/issues['|"]/);
-        assert.fileContent('package.json', /['|"]*homepage['|"]*[ ]*:[ ]*['|"]http:\/\/github.com['|"]/);
-        done();
-      });
+    it('should update package.json with prompt data', function () {
+      assert.fileContent('package.json', /['|"]*name['|"]*[ ]*:[ ]*['|"]Test['|"]/);
+      assert.fileContent('package.json', /['|"]*description['|"]*[ ]*:[ ]*['|"]Blablabla['|"]/);
+      assert.fileContent('package.json', /['|"]*main['|"]*[ ]*:[ ]*['|"]gulpfile.js['|"]/);
+      assert.fileContent('package.json', /['|"]*url['|"]*[ ]*:[ ]*['|"]http:\/\/github.com\/chrisvanmook\/generator-web-infans.git['|"]/);
     });
 
+    it('should update layout.twig with prompt data', function () {
+      assert.fileContent('src/views/layout.twig', /<title>Test<\/title>/);
+    });
+
+    it('should update layout.twig with the bower scripts', function () {
+      assert.fileContent('src/views/layout.twig', /<script src="\/bower_components\/jquery\/dist\/jquery.js"><\/script>/);
+    });
+
+    it('should update layout.twig with the google analytics code', function () {
+      assert.fileContent('src/views/layout.twig', /"UA-12345678"/);
+    });
+
+  });
+
+  describe('Prompt fields are left empty', function () {
+
+    //todo
+
+    //mockPrompt.analyticsID = '';
+    //
+    //it('should remove google analytics code from layout.twig if code is not set', function () {
+    //  //assert.noFileContent('src/views/layout.twig', /"GoogleAnalyticsObject"/);
+    //});
   });
 });
