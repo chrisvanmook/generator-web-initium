@@ -1,15 +1,16 @@
-#generator-web-infans - a yeoman web app generator [![Build Status](https://travis-ci.org/chrisvanmook/generator-web-infans.svg?branch=master)](https://travis-ci.org/chrisvanmook/generator-web-infans) [![dependencies](https://david-dm.org/chrisvanmook/generator-web-infans.svg)](https://david-dm.org/chrisvanmook/generator-web-infans.svg)
+# generator-web-infans - a yeoman web app generator
+[![Build Status](https://travis-ci.org/chrisvanmook/generator-web-infans.svg?branch=master)](https://travis-ci.org/chrisvanmook/generator-web-infans) [![dependencies](https://david-dm.org/chrisvanmook/generator-web-infans.svg)](https://david-dm.org/chrisvanmook/generator-web-infans.svg)
 
 Web Infans is a yeoman generator that will help you bootstrap your webapp with gulp.
 Choose your favorite pre-processor and JS libraries and let Web Infans do the rest.
 
-##Dependencies
+## Dependencies
 Please make sure you have the following installed globally:
-- NodeJS
+- [https://nodejs.org/](NodeJS)
 - [https://www.npmjs.com/](npm)
 - [http://bower.io/](bower)
 
-##Features
+## Features
 - SASS preprocessing
 - Create CSS sourcemaps
 - CSS Autoprefixer
@@ -46,4 +47,4 @@ Run `gulp build`, this will create a `dist` folder with all the necessary files
 - Documentation
 
 ## License
-generator-web-infans is distributed under the MIT License. One file and one file only (src/js/app.js) is distributed under the slightly modified MIT License.
+generator-web-infans is distributed under the MIT License.

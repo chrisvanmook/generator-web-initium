@@ -35,31 +35,61 @@ describe('Gulp webapp generator test', function () {
     }.bind(this));
   });
 
-  it('the generator can be required without throwing', function () {
-    // not testing the actual run of generators yet
-    this.app = require('../app');
+  describe('File Creation', function () {
+
+    it('the generator can be required without throwing', function () {
+      // not testing the actual run of generators yet
+      this.app = require('../app');
+    });
+
+    it('creates expected files', function (done) {
+      var expected = [
+        '.bowerrc',
+        '.editorconfig',
+        '.jshintrc',
+        'README.MD',
+        'package.json',
+        'bower.json',
+        'gulpfile.js',
+        'src/js/main.js',
+        'src/views/partials/nav.twig',
+        'src/views/partials/footer.twig',
+        'src/views/pages/index.twig',
+        'src/views/pages/index.json',
+        'src/views/layout.twig'
+      ];
+
+      this.webapp.run(function () {
+        assert.file(expected);
+        done();
+      });
+    });
   });
 
-  it('creates expected files', function (done) {
-    var expected = [
-      '.bowerrc',
-      '.editorconfig',
-      '.jshintrc',
-      'README.MD',
-      'package.json',
-      'bower.json',
-      'gulpfile.js',
-      'src/js/main.js',
-      'src/views/partials/nav.twig',
-      'src/views/partials/footer.twig',
-      'src/views/pages/index.twig',
-      'src/views/pages/index.json',
-      'src/views/layout.twig'
-    ];
+  describe('File Customization', function () {
 
-    this.webapp.run(function () {
-      assert.file(expected);
-      done();
+    it('should update bower.js with prompt data', function (done) {
+      this.webapp.run(function () {
+        assert.fileContent('bower.json', /['|"]*name['|"]*[ ]*:[ ]*['|"]Test['|"]/);
+        //assert.fileContent('bower.json', /['|"]*description['|"]*[ ]*:[ ]*['|"]Blablabla['|"]/);
+        assert.fileContent('bower.json', /['|"]*authors['|"]*[ ]*:[ ]*['|"]Chris['|"]/);
+        assert.fileContent('bower.json', /['|"]*license['|"]*[ ]*:[ ]*['|"]Copyright['|"]/);
+        done();
+      });
     });
+
+    it('should update package.json with prompt data', function (done) {
+      this.webapp.run(function () {
+        assert.fileContent('package.json', /['|"]*name['|"]*[ ]*:[ ]*['|"]Test['|"]/);
+        //assert.fileContent('package.json', /['|"]*title['|"]*[ ]*:[ ]*['|"]Test['|"]/);
+        assert.fileContent('package.json', /['|"]*description['|"]*[ ]*:[ ]*['|"]Blablabla['|"]/);
+        assert.fileContent('package.json', /['|"]*main['|"]*[ ]*:[ ]*['|"]app\/index.js['|"]/);
+        assert.fileContent('package.json', /['|"]*url['|"]*[ ]*:[ ]*['|"]http:\/\/github.com['|"]/);
+        assert.fileContent('package.json', /['|"]*url['|"]*[ ]*:[ ]*['|"]http:\/\/github.com\/issues['|"]/);
+        assert.fileContent('package.json', /['|"]*homepage['|"]*[ ]*:[ ]*['|"]http:\/\/github.com['|"]/);
+        done();
+      });
+    });
+
   });
 });
