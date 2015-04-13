@@ -219,10 +219,10 @@ module.exports = generators.Base.extend({
 
       // wire Bower packages to html file
       wiredep({
-        directory: this.destinationRoot() + '/src/bower_components',
-        bowerJson: this.destinationPath('bower.json'),
+        directory: this.destinationPath('/src/bower_components'),
+        bowerJson: JSON.parse(fs.readFileSync(this.destinationPath('/bower.json'))),
         ignorePath: /^(\.\.\/)*\.\./,
-        src: this.destinationRoot() + '/src/views/layout.twig',
+        src: this.destinationPath('/src/views/layout.twig'),
         exclude: []
       });
 

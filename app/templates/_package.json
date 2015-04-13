@@ -1,10 +1,9 @@
 {
   "name": "<%= appName %>",
   "version": "0.0.0",
-  "description": "<%= appDesc %>",
+  <% if (appDesc) { %>"description": "<%= appDesc %>",<% } %>
   "main": "gulpfile.js",
-  <% if(appRepo) { %>
-  "repository": {
+  <% if(appRepo) { %>"repository": {
     "type": "git",
     "url": "<%= appRepo %>"
   },<% } %>

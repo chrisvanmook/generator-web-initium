@@ -1,6 +1,6 @@
 {
   "name": "generator-web-infans",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A yeoman generator that will help you bootstrap your webapp with gulp.",
   "files": [
     "app",
@@ -16,6 +16,7 @@
     "starters"
   ],
   "dependencies": {
+    "fs-extra": "^0.18.0",
     "wiredep": "^2.2.2",
     "yeoman-generator": "^0.19.1",
     "yosay": "^1.0.3"
@@ -35,7 +36,7 @@
   },
   "homepage": "https://github.com/chrisvanmook/generator-web-infans",
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec --no-timeouts"
   },
   "devDependencies": {
     "mocha": "^2.2.4"
