@@ -2,7 +2,7 @@
 
 var generators = require('yeoman-generator'),
   wiredep = require('wiredep'),
-  fs = require('fs'),
+  fs = require('fs-extra'),
   yosay = require('yosay');
 
 module.exports = generators.Base.extend({
@@ -103,7 +103,21 @@ module.exports = generators.Base.extend({
         value: 'useRespondJS',
         checked: true
       }]
-    }];
+    },{
+      type: 'list',
+      name: 'imageConverter',
+      message: 'Which software are you using to process images with? (please have one of the options installed already, see readme for more info)',
+      choices: [{
+          name: 'ImageMagick',
+          value: 'useImageMagick',
+          checked: true
+        },{
+          name: 'GraphicsMagick',
+          value: 'useGraphicsMagick',
+          checked: false
+        }
+      ]
+      }];
 
     this.prompt(prompts, function (answers) {
       var jsLibs = answers.javascript;
@@ -126,6 +140,8 @@ module.exports = generators.Base.extend({
       this.useFastClick = hasjsLib('useFastClick');
       this.useHTML5Shiv = hasjsLib('useHTML5Shiv');
       this.useRespondJS = hasjsLib('useRespondJS');
+
+      this.imageConverter = answers.imageConverter;
 
       done();
     }.bind(this));
@@ -202,6 +218,12 @@ module.exports = generators.Base.extend({
 
       this.write(partialsDir + "nav.twig", partials.nav);
       this.write(partialsDir + "footer.twig", partials.footer);
+    },
+
+    assets: function(){
+      fs.mkdirs('./src/assets/img');
+      fs.mkdirs('./src/assets/fonts');
+      fs.mkdirs('./src/assets/icons');
     }
   },
 

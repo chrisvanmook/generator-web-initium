@@ -32,7 +32,10 @@
 		filter = require('gulp-filter'),
 		tag_version = require('gulp-tag-version'),
 		inquirer = require('inquirer'),
-		sassdoc = require('sassdoc');
+		sassdoc = require('sassdoc'),
+    svgmin = require('gulp-svgmin'),
+    gm = require('gulp-gm'),
+    rename = require("gulp-rename");
 
 	/**
 	 * Put all your configurations here!
@@ -40,6 +43,7 @@
 	var config = {
  		src_dir: './src/', //your working directory
 		build_dir: './dist/', // the build directory
+    main_favicon: './src/favicon.png',
 		styleguide: './styleguide',
 		jsdoc: './doc/js',
 		sassdoc: './doc/sass',
@@ -58,30 +62,56 @@
 				'./src/.htaccess',
 				'./src/./assets/{img,img/**}'
 			],
-			favicons: ['./src/assets/favicons/**'],
 			js: ["./src/*.js", "!./src/js/bundle.js"]
 		},
 		banner: '/*! Build: ' + new Date().toString() + ' */\n'
 	};
 
-	/**
-	 * Automatically minify images when creating a build
-	 */
-	gulp.task('imagemin', function (cb) {
-		gulp.src([
-			config.src_dir + 'assets/img/**/*.png',
-			config.src_dir + 'assets/img/**/*.jpg',
-			config.src_dir + 'assets/img/**/*.gif',
-			config.src_dir + 'assets/img/**/*.jpeg',
-			config.src_dir + 'assets/img/**/*.svg'
-		])
-			.pipe(imageop({
-				optimizationLevel: 9,
-				progressive: true,
-				interlaced: true
-			}))
-			.pipe(gulp.dest(config.build_dir + 'assets/img')).on('end', cb).on('error', cb);
-	});
+  gulp.task('imagemin:svg', function (cb) {
+    gulp.src(config.src_dir + 'assets/img/**/*.svg')
+      .pipe(svgmin())
+      .pipe(gulp.dest(config.build_dir + 'assets/img')).on('end', cb).on('error', cb);
+  });
+
+  gulp.task('imagemin:default', function (cb) {
+    gulp.src([
+      config.src_dir + 'assets/img/**/*.png',
+      config.src_dir + 'assets/img/**/*.jpg',
+      config.src_dir + 'assets/img/**/*.gif',
+      config.src_dir + 'assets/img/**/*.jpeg'
+    ])
+      .pipe(imageop({
+        optimizationLevel: 9,
+        progressive: true,
+        interlaced: true
+      }))
+      .pipe(gulp.dest(config.build_dir + 'assets/img')).on('end', cb).on('error', cb);
+  });
+
+  /**
+   * Automatically minify images when creating a build
+   */
+  gulp.task('imagemin', ['imagemin:default', 'imagemin:svg']);
+
+  /**
+   * Convert one image to multiple favicons for multiple platforms and devices
+   */
+
+  function resizeImage(width, height){
+    return gm(function (gmfile) {
+      return gmfile.resize(100, 100);
+    }<% if (imageConverter == 'useImageMagick') { %>, {
+      imageMagick: true
+      <% } %>});
+  }
+
+  gulp.task('favicon', function () {
+    gulp.src(config.main_favicon)
+      .pipe(resizeImage(57, 57))).pipe(rename('apple-touch-icon-57x57.png')).pipe(gulp.dest('./dist/'));
+    gulp.src(config.main_favicon)
+      .pipe(resizeImage(114, 114)).pipe(rename('apple-touch-icon-114x114.png')).pipe(gulp.dest(config.build_dir));
+
+  });
 
 	/**
 	 * Generate css file from SASS, apply autoprefixer and create sourcemaps

@@ -41,6 +41,7 @@
   },
   "devDependencies": {
     "coveralls": "^2.11.2",
+    "gulp-rename": "^1.2.2",
     "istanbul": "^0.3.13",
     "mocha": "^2.2.4",
     "mocha-lcov-reporter": "0.0.2"
