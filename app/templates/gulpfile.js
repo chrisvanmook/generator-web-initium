@@ -4,38 +4,14 @@
 	'use strict';
 
 	var gulp = require('gulp'),
-		browserSync = require('browser-sync'),
-		sass = require('gulp-sass'),
-		prefix = require('gulp-autoprefixer'),
-		minifyCSS = require('gulp-minify-css'),
-		uncss = require('gulp-uncss'),
-		sourcemaps = require('gulp-sourcemaps'),
-		combineMq = require('gulp-combine-mq'),
-		runSequence = require('run-sequence'),
-		util = require('gulp-util'),
-		reload = browserSync.reload,
-		uglify = require('gulp-uglify'),
-		imageop = require('gulp-image-optimization'),
-		usemin = require('gulp-usemin'),
-		header = require('gulp-header'),
-		rev = require('gulp-rev'),
-		swig = require('gulp-swig'),
-		data = require('gulp-data'),
-		del = require('del'),
-		jshint = require('gulp-jshint'),
-		styleguide = require('sc5-styleguide'),
-		connect = require('gulp-connect'),
-		minifyHtml = require('gulp-minify-html'),
-		jsdoc = require("gulp-jsdoc"),
-		git = require('gulp-git'),
-		bump = require('gulp-bump'),
-		filter = require('gulp-filter'),
-		tag_version = require('gulp-tag-version'),
-		inquirer = require('inquirer'),
-		sassdoc = require('sassdoc'),
-    svgmin = require('gulp-svgmin'),
-    gm = require('gulp-gm'),
-    rename = require("gulp-rename");
+    plugins = require('gulp-load-plugins')(),
+    browserSync = require('browser-sync'),
+    sassdoc = require('sassdoc'),
+    styleguide = require('sc5-styleguide'),
+    inquirer = require("inquirer"),
+    runSequence = require('run-sequence'),
+    del = require('del'),
+		reload = browserSync.reload;
 
 	/**
 	 * Put all your configurations here!
@@ -69,7 +45,7 @@
 
   gulp.task('imagemin:svg', function (cb) {
     gulp.src(config.src_dir + 'assets/img/**/*.svg')
-      .pipe(svgmin())
+      .pipe(plugins.svgmin())
       .pipe(gulp.dest(config.build_dir + 'assets/img')).on('end', cb).on('error', cb);
   });
 
@@ -80,7 +56,7 @@
       config.src_dir + 'assets/img/**/*.gif',
       config.src_dir + 'assets/img/**/*.jpeg'
     ])
-      .pipe(imageop({
+      .pipe(plugins.imageOptimization({
         optimizationLevel: 9,
         progressive: true,
         interlaced: true
@@ -98,7 +74,7 @@
    */
 
   function resizeImage(width, height){
-    return gm(function (gmfile) {
+    return plugins.gm(function (gmfile) {
       return gmfile.resize(100, 100);
     }<% if (imageConverter == 'useImageMagick') { %>, {
       imageMagick: true
@@ -107,9 +83,9 @@
 
   gulp.task('favicon', function () {
     gulp.src(config.main_favicon)
-      .pipe(resizeImage(57, 57)).pipe(rename('apple-touch-icon-57x57.png')).pipe(gulp.dest('./dist/'));
+      .pipe(resizeImage(57, 57)).pipe(plugins.rename('apple-touch-icon-57x57.png')).pipe(gulp.dest('./dist/'));
     gulp.src(config.main_favicon)
-      .pipe(resizeImage(114, 114)).pipe(rename('apple-touch-icon-114x114.png')).pipe(gulp.dest(config.build_dir));
+      .pipe(resizeImage(114, 114)).pipe(plugins.rename('apple-touch-icon-114x114.png')).pipe(gulp.dest(config.build_dir));
 
   });
 
@@ -118,14 +94,14 @@
 	 */
 	gulp.task('sass', function () {
 		return gulp.src(config.src_dir + 'scss/*.scss')
-			.pipe(sourcemaps.init())
-			.pipe(sass({
+			.pipe(plugins.sourcemaps.init())
+			.pipe(plugins.sass({
 				errLogToConsole: true
 			}))
-			.pipe(prefix(
+			.pipe(plugins.autoprefixer(
 				'last 2 version', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'
 			))
-			.pipe(sourcemaps.write('./'))
+			.pipe(plugins.sourcemaps.write('./'))
 			.pipe(gulp.dest(config.src_dir + 'css/'))
 			.pipe(reload({
 				stream: true
@@ -137,8 +113,8 @@
  	 */
 	gulp.task('jshint', function () {
 		return gulp.src(config.globs.js)
-			.pipe(jshint())
-			.pipe(jshint.reporter('default'))
+			.pipe(plugins.jshint())
+			.pipe(plugins.jshint.reporter('default'))
 			.pipe(reload({
 				stream: true
 			}));
@@ -148,7 +124,7 @@
 	 * Remove build/ directory
 	 */
 	gulp.task('pre-clean', function (cb) {
-		del([
+    del([
 			config.build_dir + '/**/*'
 		], cb);
 	});
@@ -171,7 +147,7 @@
 
 	gulp.task('styleguide:applystyles', function() {
 		return gulp.src(config.src_dir + 'scss/style.scss')
-			.pipe(sass({
+			.pipe(plugins.sass({
 				errLogToConsole: true
 			}))
 			.pipe(styleguide.applyStyles())
@@ -183,8 +159,8 @@
 	 */
 	gulp.task('jsdoc', function(){
 		gulp.src(config.src_dir + "js/*.js")
-			.pipe(jsdoc.parser())
-			.pipe(jsdoc.generator(config.jsdoc))
+			.pipe(plugins.jsdoc.parser())
+			.pipe(plugins.jsdoc.generator(config.jsdoc))
 	});
 
 	/**
@@ -202,24 +178,24 @@
 	 */
 	gulp.task('usemin', function () {
 		return gulp.src(config.src_dir + '/index.html')
-			.pipe(usemin({
+			.pipe(plugins.usemin({
 				css: [
-					prefix(
+          plugins.autoprefixer(
 						'last 2 version', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'
 					),
-					combineMq(),
+          plugins.combineMq(),
 					//uncss({
 					//	html: [config.url],
 					//	ignore: config.js_classes,
 					//	raw: '.morph-button.open .morph-content>div { height: 100%; opacity: 1; }'
 					//}),
-					minifyCSS(),
-					header(config.banner),
-					rev()
+          plugins.minifyCss(),
+          plugins.header(config.banner),
+          plugins.rev()
 				],
-				html: [minifyHtml({empty: true, conditionals: true})],
-				js: [uglify(), header(config.banner), rev()],
-				js_ie: [uglify(), header(config.banner), rev()]
+				html: [plugins.minifyHtml({empty: true, conditionals: true})],
+				js: [plugins.uglify(), plugins.header(config.banner), plugins.rev()],
+				js_ie: [plugins.uglify(), plugins.header(config.banner), plugins.rev()]
 			}))
 			.pipe(gulp.dest(config.build_dir + '/'));
 	});
@@ -230,9 +206,6 @@
 	gulp.task('copy', function () {
 		gulp.src(config.globs.build, {base: config.src_dir})
 			.pipe(gulp.dest(config.build_dir));
-
-		gulp.src(config.globs.favicons, {base: config.src_dir + "/assets/favicons"})
-			.pipe(gulp.dest(config.build_dir));
 	});
 
 	/**
@@ -240,7 +213,7 @@
 	 */
 	gulp.task('templates', function () {
 		gulp.src(config.src_dir + 'views/pages/*.twig')
-			.pipe(swig({
+			.pipe(plugins.swig({
 				load_json: true,
 				defaults: {
 					cache: false
@@ -267,31 +240,32 @@
 	 */
 
 	function inc(importance) {
-		// get all the files to bump version in
-		return gulp.src(['./package.json', './bower.json'])
+		gulp.src(['./package.json', './bower.json'])
 			// bump the version number in those files
-			.pipe(bump({type: importance}))
+			.pipe(plugins.bump({type: importance}))
 			// save it back to filesystem
 			.pipe(gulp.dest('./'))
 			// commit the changed version number
-			.pipe(git.commit('update version'))
+      .pipe(plugins.git.add())
+      .pipe(plugins.git.commit('update version'))
 
 			// read only one file to get the version number
-			.pipe(filter('package.json'))
+			.pipe(plugins.filter('package.json'))
 			// **tag it in the repository**
-			.pipe(tag_version());
+			.pipe(plugins.tagVersion());
 	}
 
 	gulp.task('patch', function() { return inc('patch'); });
 	gulp.task('feature', function() { return inc('minor'); });
 	gulp.task('release', function() { return inc('major'); });
 	gulp.task('prerelease', function() { return inc('prerelease'); });
+  gulp.task('nothing', function() { });
 
 	/**
 	 * Run the server on the src directory
 	 */
 	gulp.task('server', function() {
-		connect.server({
+    plugins.connect.server({
 			root: 'src',
 			port: 8000
 		});
@@ -301,7 +275,7 @@
 	 * Run server on the build directory
 	 */
 	gulp.task('server:prod', function() {
-		connect.server({
+    plugins.connect.server({
 			root: 'dist',
 			port: 80
 		});
@@ -325,7 +299,7 @@
 	 * Shorthand task to force reload browser sync
 	 */
 	gulp.task('bs-reload', function () {
-		browserSync.reload();
+		plugins.browserSync.reload();
 	});
 
 	/**
@@ -338,13 +312,13 @@
 	 * - Generate a build folder
 	 */
 	gulp.task('build', function (callback) {
-		inquirer.prompt([{
+    inquirer.prompt([{
 			type: 'list',
 			name: 'bump',
 			message: 'What type of bump would you like to do?',
-			choices: ['patch', 'feature', 'release', 'prerelease']
+			choices: ['patch', 'feature', 'release', 'prerelease', 'nothing']
 		}], function(answers){
-			runSequence(
+      runSequence(
 				[answers.bump],
 				['jshint', 'templates', 'sass'],
 				'pre-clean',

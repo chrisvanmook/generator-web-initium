@@ -1,4 +1,3 @@
-/*global describe, beforeEach, it */
 'use strict';
 var path = require('path'),
   fs = require('fs-extra'),
@@ -20,7 +19,7 @@ describe('Gulp webapp generator test', function () {
   beforeEach(function (done) {
 
     helpers.run(path.join(__dirname, '../app'))
-      .inDir(path.join(__dirname, './temp'), function (dir) {
+      .inDir(path.join(__dirname, './temp'), function () {
         // Mock installation bower files
         fs.createFileSync("./src/bower_components/jquery/dist/jquery.js");
         fs.writeJsonSync("./src/bower_components/jquery/bower.json", {name: 'jquery', main: "dist/jquery.js"});
@@ -31,11 +30,6 @@ describe('Gulp webapp generator test', function () {
   });
 
   describe('File Creation', function () {
-
-    it('the generator can be required without throwing', function () {
-      // not testing the actual run of generators yet
-      this.app = require('../app');
-    });
 
     it('should create the expected files', function () {
       var expected = [
@@ -51,7 +45,11 @@ describe('Gulp webapp generator test', function () {
         'src/views/partials/footer.twig',
         'src/views/pages/index.twig',
         'src/views/pages/index.json',
-        'src/views/layout.twig'
+        'src/views/layout.twig',
+        'src/assets/img',
+        'src/assets/icons',
+        'src/assets/fonts',
+        'src/favicon.png'
       ];
 
       assert.file(expected);

@@ -31,7 +31,6 @@
   "es5": false,
   "esnext": false,
   "moz": false,
-
   "evil": false,
   "expr": false,
   "funcscope": false,
@@ -50,7 +49,6 @@
   "sub": false,
   "supernew": false,
   "validthis": false,
-
   "browser": true,
   "browserify": false,
   "couch": false,
@@ -69,5 +67,7 @@
   "worker": false,
   "wsh": false,
   "yui": false,
-  "globals": {}
+  "globals": {
+
+  }
 }

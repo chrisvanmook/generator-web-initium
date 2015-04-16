@@ -5,6 +5,7 @@ var generators = require('yeoman-generator'),
   fs = require('fs-extra'),
   yosay = require('yosay');
 
+//noinspection JSUnusedGlobalSymbols
 module.exports = generators.Base.extend({
   // The name `constructor` is important here
   constructor: function () {
@@ -188,7 +189,7 @@ module.exports = generators.Base.extend({
         case 'less':
           break;
 
-        case 'sass':
+        case 'stylus':
           break;
 
         default:
@@ -220,6 +221,10 @@ module.exports = generators.Base.extend({
       this.write(partialsDir + "footer.twig", partials.footer);
     },
 
+    favicon: function () {
+      this.copy('favicon.png', './src/favicon.png');
+    },
+
     assets: function(){
       fs.mkdirs('./src/assets/img');
       fs.mkdirs('./src/assets/fonts');
@@ -236,7 +241,6 @@ module.exports = generators.Base.extend({
         skipMessage: this.options['skip-install-message']
       });
     }
-
     this.on('end', function () {
 
       // wire Bower packages to html file
@@ -247,10 +251,7 @@ module.exports = generators.Base.extend({
         src: this.destinationPath('/src/views/layout.twig'),
         exclude: []
       });
-
       this.log(yosay("All done! Please run `gulp` to serve your brand new web app!"));
-
     }.bind(this));
   }
-
 });
