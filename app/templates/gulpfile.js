@@ -107,7 +107,7 @@
 
   gulp.task('favicon', function () {
     gulp.src(config.main_favicon)
-      .pipe(resizeImage(57, 57))).pipe(rename('apple-touch-icon-57x57.png')).pipe(gulp.dest('./dist/'));
+      .pipe(resizeImage(57, 57)).pipe(rename('apple-touch-icon-57x57.png')).pipe(gulp.dest('./dist/'));
     gulp.src(config.main_favicon)
       .pipe(resizeImage(114, 114)).pipe(rename('apple-touch-icon-114x114.png')).pipe(gulp.dest(config.build_dir));
 

@@ -1,4 +1,5 @@
 # generator-web-initium - a yeoman web app generator
+[![NPM info](https://nodei.co/npm/generator-web-initium.png?downloads=true)](https://nodei.co/npm/generator-web-initium.png?downloads=true)
 [![Build Status](https://travis-ci.org/chrisvanmook/generator-web-initium.svg?branch=master)](https://travis-ci.org/chrisvanmook/generator-web-initium) [![dependencies](https://david-dm.org/chrisvanmook/generator-web-initium.svg)](https://david-dm.org/chrisvanmook/generator-web-initium.svg) [![Coverage Status](https://coveralls.io/repos/chrisvanmook/generator-web-initium/badge.svg?branch=master)](https://coveralls.io/r/chrisvanmook/generator-web-initium?branch=master)
 
 Web Initium is a yeoman generator that will help you bootstrap your webapp with gulp.
@@ -8,9 +9,9 @@ There are of course lots of webapp scaffolding generators out there (for example
 
 ## Dependencies
 Please make sure you have the following installed globally:
-- [https://nodejs.org/](NodeJS)
-- [https://www.npmjs.com/](npm)
-- [http://bower.io/](bower)
+- [NodeJS](https://nodejs.org/)
+- [npm](https://www.npmjs.com/)
+- [bower](http://bower.io/)
 
 ## Features
 - SASS preprocessing
@@ -69,9 +70,11 @@ All the dev files are situated in the `src` directory:
 - **HTML** HTML files are in the `src/views` folder. Since we are using `twig` as a template language, we have a `src/views/layout.twig` file, that can be used for all pages. All twig files in the `src/views/pages` folder should have the same name as the `.json` files. This way, content and markup are nicely separated.
 - **Assets** All images, fonts, icons and other non-script files should be put in the `src/assets` directory.
 - **JavaScript** Use the `src/js` folder. If you need to add scripts to your html files, please do so in between the `<!-- build:js /js/bundle.js --> <!-- endbuild -->` comments in the `src/views/layout` file, as this will make sure your script will be concatenated and minified together with all the other scripts.
+- **Documentation** The `src/doc` folder is where all the generated documentation will be. For JavaScript, we'll be using JSDoc, for SASS SassDoc.
 
 ## Todo's:
 - Support LESS and Stylus
+- Looking into gulp-load-plugins
 - Support for coffeescript & typescript
 - Add options for using sourcemaps, docs and stylesheet.
 - Generate favicons / apple icons
