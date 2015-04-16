@@ -1,8 +1,10 @@
 # generator-web-initium - a yeoman web app generator
-[![Build Status](https://travis-ci.org/chrisvanmook/generator-web-initium.svg?branch=master)](https://travis-ci.org/chrisvanmook/generator-web-initium) [![dependencies](https://david-dm.org/chrisvanmook/generator-web-initium.svg)](https://david-dm.org/chrisvanmook/generator-web-initium.svg) [![Coverage Status](https://coveralls.io/repos/chrisvanmook/generator-web-initium/badge.svg)](https://coveralls.io/r/chrisvanmook/generator-web-initium)
+[![Build Status](https://travis-ci.org/chrisvanmook/generator-web-initium.svg?branch=master)](https://travis-ci.org/chrisvanmook/generator-web-initium) [![dependencies](https://david-dm.org/chrisvanmook/generator-web-initium.svg)](https://david-dm.org/chrisvanmook/generator-web-initium.svg) [![Coverage Status](https://coveralls.io/repos/chrisvanmook/generator-web-initium/badge.svg?branch=master)](https://coveralls.io/r/chrisvanmook/generator-web-initium?branch=master)
 
 Web Initium is a yeoman generator that will help you bootstrap your webapp with gulp.
-Choose your favorite pre-processor and JS libraries and let Web Initium do the rest.
+Choose your favorite pre-processor, JS libraries etc... and let Web Initium do the rest.
+
+There are of course lots of webapp scaffolding generators out there (for example the awesome [generator-gulp-webapp](https://github.com/yeoman/generator-gulp-webapp/). This repo, however, is made to make the build and develop process more personal, richer and efficient. In other words, the developer can choose from a broad variety of customizations and automated tasks, ready to make it big and rich! :)
 
 ## Dependencies
 Please make sure you have the following installed globally:
@@ -16,6 +18,7 @@ Please make sure you have the following installed globally:
 - CSS Autoprefixer
 - BrowserSync (livereload, sync on other devices)
 - Twig Templating Engine
+- Image resizer (e.g. for generating favicons)
 - JSDoc generator
 - SASSdoc generator
 - Styleguide generator
@@ -69,6 +72,7 @@ All the dev files are situated in the `src` directory:
 
 ## Todo's:
 - Support LESS and Stylus
+- Support for coffeescript & typescript
 - Add options for using sourcemaps, docs and stylesheet.
 - Generate favicons / apple icons
 - Improve tests
