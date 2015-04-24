@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "fs-extra": "^0.18.0",
+    "lodash": "^3.7.0",
     "wiredep": "^2.2.2",
     "yeoman-generator": "^0.19.1",
     "yosay": "^1.0.3"

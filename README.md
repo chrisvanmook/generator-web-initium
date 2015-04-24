@@ -13,6 +13,7 @@ Please make sure you have the following installed globally:
 - [NodeJS](https://nodejs.org/)
 - [npm](https://www.npmjs.com/)
 - [bower](http://bower.io/)
+- [Yeoman](http://yeoman.io/)
 
 ## Features
 - SASS preprocessing
@@ -33,8 +34,19 @@ Please make sure you have the following installed globally:
     - Copies all necessary files
 
 ## How to install
-Run `npm install -g generator-web-initium`. Alternatively, you can clone this repo and run `npm link`.
-Make sure GraphicsMagick or ImageMagick is installed on your system and properly set up in your `PATH`.
+Make sure you have the dependencies described above installed:
+### NodeJS:
+Go to [nodejs.org](https://nodejs.org/) and download & install NodeJS on your System.
+
+### Bower
+Run `npm install -g bower` to install bower globally on your system
+
+### Yeoman
+Run `npm install -g yo` to install yeoman globally on your system
+
+## Web Initium Generator
+Run `npm install -g generator-web-initium`.
+Also, make sure GraphicsMagick or ImageMagick is installed on your system and properly set up in your `PATH`.
 
 Ubuntu:
 
@@ -60,7 +72,7 @@ Confirm that GraphicsMagick or ImageMagick is properly set up by executing `gm -
 In the generated `gulpfile.js` file, please adjust the global `var config` to your needs.
 
 ## Start
-Run `yo web-initium` and follow the steps. After successfully installed everything, run `gulp` (or alternatively `npm start`) to start the server with your generated webapp.
+Run `yo web-initium` and follow the steps. After successfully installed everything, run `gulp serve` (or alternatively `npm start`) to start the server with your generated webapp.
 
 ## How to build
 Run `gulp build`, this will create a `dist` folder with all the necessary files

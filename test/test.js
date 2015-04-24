@@ -15,7 +15,7 @@ var mockPrompt = {
   javascript: ['usejQuery']
 };
 
-describe('Gulp webapp generator test', function () {
+describe('Web initium generator', function () {
   beforeEach(function (done) {
 
     helpers.run(path.join(__dirname, '../app'))
@@ -41,6 +41,7 @@ describe('Gulp webapp generator test', function () {
         'bower.json',
         'gulpfile.js',
         'src/js/main.js',
+        'src/scss/main.scss',
         'src/views/partials/nav.twig',
         'src/views/partials/footer.twig',
         'src/views/pages/index.twig',
@@ -49,6 +50,13 @@ describe('Gulp webapp generator test', function () {
         'src/assets/img',
         'src/assets/icons',
         'src/assets/fonts',
+        'gulp/build.js',
+        'gulp/doc.js',
+        'gulp/html.js',
+        'gulp/sass.js',
+        'gulp/server.js',
+        'gulp/styleguide.js',
+        'gulp/watch.js',
         'src/favicon.png'
       ];
 
@@ -58,6 +66,9 @@ describe('Gulp webapp generator test', function () {
 
 
   describe('File Customization', function () {
+    beforeEach(function(){
+      mockPrompt.analyticsID = 'UA-12345678';
+    });
 
     it('should update bower.js with prompt data', function () {
       assert.fileContent('bower.json', /['|"]*name['|"]*[ ]*:[ ]*['|"]Test['|"]/);
@@ -86,14 +97,39 @@ describe('Gulp webapp generator test', function () {
 
   });
 
-  describe('Prompt fields are left empty', function () {
+  //describe('Prompt fields are left empty', function () {
+  //
+  //  //todo
+  //  beforeEach(function(){
+  //    mockPrompt.analyticsID = '';
+  //  });
+  //
+  //  it('should remove google analytics code from layout.twig if code is not set', function () {
+  //    assert.noFileContent('src/views/layout.twig', /"GoogleAnalyticsObject"/);
+  //  });
+  //});
 
-    //todo
-
-    //mockPrompt.analyticsID = '';
-    //
-    //it('should remove google analytics code from layout.twig if code is not set', function () {
-    //  //assert.noFileContent('src/views/layout.twig', /"GoogleAnalyticsObject"/);
-    //});
-  });
 });
+//
+//describe('Web initium generator: Gulp file', function(){
+//  var assertTaskExists = function (generator, taskName, features, done) {
+//    helpers.mockPrompt(generator, {
+//      features: features
+//    });
+//
+//    generator.run(function () {
+//      var gulpFile = fs.readFileSync('gulpfile.js', 'utf8');
+//      var regexGulp = new RegExp('gulp.task\\(\'' + taskName + '\'');
+//
+//      assert.ok(
+//        regexGulp.test(gulpFile),
+//        'gulpfile.js does not contain ' + taskName + ' task'
+//      );
+//      done();
+//    });
+//  };
+//
+//  it('should contain styles task without Sass included', function (done) {
+//    assertTaskExists(this.webapp, 'styles', [], done);
+//  });
+//});

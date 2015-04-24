@@ -1,0 +1,40 @@
+{
+  "staticFiles": [
+    ".gitignore",
+    ".bowerrc",
+    ".editorconfig",
+    ".jshintrc",
+
+    "src/favicon.png",
+    "gulp/styleguide.js",
+    "gulp/server.js",
+
+    "src/scss/main.scss",
+
+    "src/views/pages/index.twig",
+    "src/views/pages/index.json",
+    "src/views/partials/nav.twig",
+    "src/views/partials/footer.twig"
+  ],
+  "folders": [
+    "src/assets/img",
+    "src/assets/fonts",
+    "src/assets/icons"
+  ],
+  "templates": [
+    "README.MD",
+
+    "package.json",
+    "bower.json",
+
+    "gulpfile.js",
+    "gulp/build.js",
+    "gulp/sass.js",
+    "gulp/doc.js",
+    "gulp/html.js",
+    "gulp/watch.js",
+
+    "src/views/layout.twig",
+    "src/js/main.js"
+  ]
+}

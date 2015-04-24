@@ -1,12 +1,11 @@
 'use strict';
 
 var generators = require('yeoman-generator'),
-  wiredep = require('wiredep'),
   fs = require('fs-extra'),
   yosay = require('yosay');
 
 //noinspection JSUnusedGlobalSymbols
-module.exports = generators.Base.extend({
+var WebInitiumGenerator = generators.Base.extend({
   // The name `constructor` is important here
   constructor: function () {
     // Calling the super constructor is important so our generator is correctly set up
@@ -147,111 +146,9 @@ module.exports = generators.Base.extend({
       done();
     }.bind(this));
   },
-
-  writing: {
-    gulpfile: function () {
-      this.template('gulpfile.js');
-    },
-
-    packageJSON: function () {
-      this.template('_package.json', 'package.json');
-    },
-
-    git: function () {
-      this.copy('gitignore', '.gitignore');
-      //this.copy('gitattributes', '.gitattributes');
-    },
-
-    bower: function () {
-      this.copy('bowerrc', '.bowerrc');
-      this.template('bower.json');
-    },
-
-    markdown: function () {
-      this.template('readme.md', 'README.MD');
-    },
-
-    jshint: function () {
-      this.copy('jshintrc', '.jshintrc');
-    },
-
-    editorConfig: function () {
-      this.copy('editorconfig', '.editorconfig');
-    },
-
-    mainStylesheet: function () {
-
-      switch (this.preprocessor) {
-        case 'sass':
-
-          break;
-
-        case 'less':
-          break;
-
-        case 'stylus':
-          break;
-
-        default:
-
-
-      }
-
-      //this.copy(css, 'app/styles/' + css);
-    },
-
-    js: function () {
-      this.write("./src/js/main.js", "");
-    },
-
-    html: function () {
-      var viewDir = "./src/views/",
-        indexDir = viewDir + "pages/",
-        partialsDir = viewDir + "partials/",
-        partials = {
-          nav: "<nav></nav>",
-          footer: "<footer></footer>"
-        };
-
-      this.template("layout.twig", viewDir + "layout.twig");
-      this.copy("index.twig", indexDir + "index.twig");
-      this.copy("index.json", indexDir + "index.json");
-
-      this.write(partialsDir + "nav.twig", partials.nav);
-      this.write(partialsDir + "footer.twig", partials.footer);
-    },
-
-    favicon: function () {
-      this.copy('favicon.png', './src/favicon.png');
-    },
-
-    assets: function(){
-      fs.mkdirs('./src/assets/img');
-      fs.mkdirs('./src/assets/fonts');
-      fs.mkdirs('./src/assets/icons');
-    }
-  },
-
-  install: function () {
-
-    // perform a npm install
-    if (!this.options['skip-install']) {
-      this.installDependencies({
-        bower: false, // package should contain postinstall: bower install,
-        skipMessage: this.options['skip-install-message']
-      });
-    }
-    this.on('end', function () {
-
-      // wire Bower packages to html file
-      wiredep({
-        directory: this.destinationPath('/src/bower_components'),
-        bowerJson: JSON.parse(fs.readFileSync(this.destinationPath('/bower.json'))),
-        ignorePath: /^(\.\.\/)*\.\./,
-        src: this.destinationPath('/src/views/layout.twig'),
-        exclude: []
-      });
-      this.log(yosay("All done! Please run `gulp` to serve your brand new web app!"));
-    }.bind(this));
-  }
 });
+require('./src/files')(WebInitiumGenerator);
+require('./src/write')(WebInitiumGenerator);
+require('./src/install')(WebInitiumGenerator);
+
+module.exports = WebInitiumGenerator;
