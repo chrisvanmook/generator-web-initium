@@ -20,12 +20,16 @@
 
     <section class="main-content">
       <h1>
-<a id="generator-web-initium---a-yeoman-web-app-generator" class="anchor" href="#generator-web-initium---a-yeoman-web-app-generator" aria-hidden="true"><span class="octicon octicon-link"></span></a>generator-web-initium - a yeoman web app generator</h1>
+<a id="generator-web-initium" class="anchor" href="#generator-web-initium" aria-hidden="true"><span class="octicon octicon-link"></span></a>generator-web-initium</h1>
 
-<p><a href="https://travis-ci.org/chrisvanmook/generator-web-initium"><img src="https://travis-ci.org/chrisvanmook/generator-web-initium.svg?branch=master" alt="Build Status"></a> <a href="https://david-dm.org/chrisvanmook/generator-web-initium.svg"><img src="https://david-dm.org/chrisvanmook/generator-web-initium.svg" alt="dependencies"></a> <a href="https://coveralls.io/r/chrisvanmook/generator-web-initium"><img src="https://coveralls.io/repos/chrisvanmook/generator-web-initium/badge.svg" alt="Coverage Status"></a></p>
+<p><a href="https://nodei.co/npm/generator-web-initium.png?downloads=true"><img src="https://nodei.co/npm/generator-web-initium.png?downloads=true" alt="NPM info"></a></p>
+
+<p><a href="https://travis-ci.org/chrisvanmook/generator-web-initium"><img src="https://travis-ci.org/chrisvanmook/generator-web-initium.svg?branch=master" alt="Build Status"></a> <a href="https://david-dm.org/chrisvanmook/generator-web-initium.svg"><img src="https://david-dm.org/chrisvanmook/generator-web-initium.svg" alt="dependencies"></a> <a href="https://coveralls.io/r/chrisvanmook/generator-web-initium?branch=master"><img src="https://coveralls.io/repos/chrisvanmook/generator-web-initium/badge.svg?branch=master" alt="Coverage Status"></a></p>
 
 <p>Web Initium is a yeoman generator that will help you bootstrap your webapp with gulp.
-Choose your favorite pre-processor and JS libraries and let Web Initium do the rest.</p>
+Choose your favorite pre-processor, JS libraries etc... and let Web Initium do the rest.</p>
+
+<p>There are of course lots of webapp scaffolding generators out there (for example the awesome <a href="https://github.com/yeoman/generator-gulp-webapp/">generator-gulp-webapp</a>. This repo, however, is made to make the build and develop process more personal, richer and efficient. In other words, the developer can choose from a broad variety of customizations and automated tasks, ready to make it big and rich! :)</p>
 
 <h2>
 <a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h2>
@@ -33,9 +37,10 @@ Choose your favorite pre-processor and JS libraries and let Web Initium do the r
 <p>Please make sure you have the following installed globally:</p>
 
 <ul>
-<li><a href="NodeJS">https://nodejs.org/</a></li>
-<li><a href="npm">https://www.npmjs.com/</a></li>
-<li><a href="bower">http://bower.io/</a></li>
+<li><a href="https://nodejs.org/">NodeJS</a></li>
+<li><a href="https://www.npmjs.com/">npm</a></li>
+<li><a href="http://bower.io/">bower</a></li>
+<li><a href="http://yeoman.io/">Yeoman</a></li>
 </ul>
 
 <h2>
@@ -47,9 +52,10 @@ Choose your favorite pre-processor and JS libraries and let Web Initium do the r
 <li>CSS Autoprefixer</li>
 <li>BrowserSync (livereload, sync on other devices)</li>
 <li>Twig Templating Engine</li>
+<li>Image resizer (e.g. for generating favicons)</li>
 <li>JSDoc generator</li>
 <li>SASSdoc generator</li>
-<li>Styleguide generator</li>
+<li>Style Guide generator</li>
 <li>JSHint</li>
 <li>Create a build folder:
 
@@ -66,7 +72,49 @@ Choose your favorite pre-processor and JS libraries and let Web Initium do the r
 <h2>
 <a id="how-to-install" class="anchor" href="#how-to-install" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to install</h2>
 
-<p>Simply run <code>npm install -g generator-web-initium</code>. Alternatively, you can clone this repo and run <code>npm link</code>.</p>
+<p>Make sure you have the dependencies described above installed:</p>
+
+<h3>
+<a id="nodejs" class="anchor" href="#nodejs" aria-hidden="true"><span class="octicon octicon-link"></span></a>NodeJS:</h3>
+
+<p>Go to <a href="https://nodejs.org/">nodejs.org</a> and download &amp; install NodeJS on your System.</p>
+
+<h3>
+<a id="bower" class="anchor" href="#bower" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bower</h3>
+
+<p>Run <code>npm install -g bower</code> to install bower globally on your system</p>
+
+<h3>
+<a id="yeoman" class="anchor" href="#yeoman" aria-hidden="true"><span class="octicon octicon-link"></span></a>Yeoman</h3>
+
+<p>Run <code>npm install -g yo</code> to install yeoman globally on your system</p>
+
+<h2>
+<a id="web-initium-generator" class="anchor" href="#web-initium-generator" aria-hidden="true"><span class="octicon octicon-link"></span></a>Web Initium Generator</h2>
+
+<p>Run <code>npm install -g generator-web-initium</code>.
+Also, make sure GraphicsMagick or ImageMagick is installed on your system and properly set up in your <code>PATH</code>.</p>
+
+<p>Ubuntu:</p>
+
+<div class="highlight highlight-shell"><pre>apt-get install imagemagick
+apt-get install graphicsmagick</pre></div>
+
+<p>Mac OS X (using <a href="http://brew.sh/">Homebrew</a>):</p>
+
+<div class="highlight highlight-shell"><pre>brew install imagemagick
+brew install graphicsmagick</pre></div>
+
+<p>Windows &amp; others:</p>
+
+<ul>
+<li>GraphicsMagick: <a href="http://www.graphicsmagick.org/download.html">http://www.graphicsmagick.org/download.html</a>
+</li>
+<li>ImageMagick: <a href="http://www.imagemagick.org/script/binary-releases.php">http://www.imagemagick.org/script/binary-releases.php</a>
+</li>
+</ul>
+
+<p>Confirm that GraphicsMagick or ImageMagick is properly set up by executing <code>gm -version</code> or <code>convert -version</code> in a terminal.</p>
 
 <h2>
 <a id="configurations" class="anchor" href="#configurations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Configurations</h2>
@@ -76,7 +124,7 @@ Choose your favorite pre-processor and JS libraries and let Web Initium do the r
 <h2>
 <a id="start" class="anchor" href="#start" aria-hidden="true"><span class="octicon octicon-link"></span></a>Start</h2>
 
-<p>Run <code>npm start</code> (or alternatively <code>gulp</code>) to start the server</p>
+<p>Run <code>yo web-initium</code> and follow the steps. After successfully installed everything, run <code>gulp serve</code> (or alternatively <code>npm start</code>) to start the server with your generated webapp.</p>
 
 <h2>
 <a id="how-to-build" class="anchor" href="#how-to-build" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to build</h2>
@@ -84,13 +132,35 @@ Choose your favorite pre-processor and JS libraries and let Web Initium do the r
 <p>Run <code>gulp build</code>, this will create a <code>dist</code> folder with all the necessary files</p>
 
 <h2>
+<a id="how-it-works" class="anchor" href="#how-it-works" aria-hidden="true"><span class="octicon octicon-link"></span></a>How it works</h2>
+
+<p>All the dev files are situated in the <code>src</code> directory:</p>
+
+<ul>
+<li>
+<strong>CSS</strong> If you are using a css pre-processor, use the corresponding folder (<code>src/scss</code>, <code>src/less</code>, <code>src/styl</code>). A css file will be generated in the <code>css</code> folder. Sourcemap files will also be generated in this folder. If you are NOT using a css pre-processor, then just use files in the <code>src/css</code> folder.</li>
+<li>
+<strong>HTML</strong> HTML files are in the <code>src/views</code> folder. Since we are using <code>twig</code> as a template language, we have a <code>src/views/layout.twig</code> file, that can be used for all pages. All twig files in the <code>src/views/pages</code> folder should have the same name as the <code>.json</code> files. This way, content and markup are nicely separated.</li>
+<li>
+<strong>Assets</strong> All images, fonts, icons and other non-script files should be put in the <code>src/assets</code> directory.</li>
+<li>
+<strong>JavaScript</strong> Use the <code>src/js</code> folder. If you need to add scripts to your html files, please do so in between the <code>&lt;!-- build:js /js/bundle.js --&gt; &lt;!-- endbuild --&gt;</code> comments in the <code>src/views/layout</code> file, as this will make sure your script will be concatenated and minified together with all the other scripts.</li>
+<li>
+<strong>Documentation</strong> The <code>src/doc</code> folder is where all the generated documentation will be. For JavaScript, we'll be using <a href="http://usejsdoc.org/">JSDoc</a>, for SASS <a href="http://sassdoc.com/">SassDoc</a>.</li>
+<li>
+<strong>Style Guide</strong> We'll be using <a href="http://styleguide.sc5.io/">SC5 Style Guide</a>. The generated content will be written to <code>./styleguide</code>. This will be automaticaly served on port 3002 (default) if you run <code>gulp</code>.</li>
+</ul>
+
+<h2>
 <a id="todos" class="anchor" href="#todos" aria-hidden="true"><span class="octicon octicon-link"></span></a>Todo's:</h2>
 
 <ul>
 <li>Support LESS and Stylus</li>
+<li>Looking into gulp-load-plugins</li>
+<li>Support for coffeescript &amp; typescript</li>
 <li>Add options for using sourcemaps, docs and stylesheet.</li>
 <li>Generate favicons / apple icons</li>
-<li>Unit tests</li>
+<li>Improve tests</li>
 <li>Documentation</li>
 </ul>
 
