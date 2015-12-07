@@ -1,8 +1,8 @@
 'use strict';
 var path = require('path'),
-  fs = require('fs-extra'),
-  helpers = require('yeoman-generator').test,
-  assert = require('yeoman-generator').assert;
+fs = require('fs-extra'),
+helpers = require('yeoman-generator').test,
+assert = require('yeoman-generator').assert;
 
 var mockPrompt = {
   appAuthor: 'Chris',
@@ -67,7 +67,7 @@ describe('Web initium generator', function () {
 
 
   describe('File Customization', function () {
-    beforeEach(function(){
+    beforeEach(function () {
       mockPrompt.analyticsID = 'UA-12345678';
     });
 
@@ -81,7 +81,7 @@ describe('Web initium generator', function () {
       assert.fileContent('package.json', /['|"]*name['|"]*[ ]*:[ ]*['|"]Test['|"]/);
       assert.fileContent('package.json', /['|"]*description['|"]*[ ]*:[ ]*['|"]Blablabla['|"]/);
       assert.fileContent('package.json', /['|"]*main['|"]*[ ]*:[ ]*['|"]gulpfile.js['|"]/);
-      assert.fileContent('package.json', /['|"]*url['|"]*[ ]*:[ ]*['|"]http:\/\/github.com\/chrisvanmook\/generator-web-infans.git['|"]/);
+      assert.fileContent('package.json', /['|"]*url['|"]*[ ]*:[ ]*['|"]http:\/\/github.com\/chrisvanmook\/generator-web-initium.git['|"]/);
     });
 
     it('should update layout.twig with prompt data', function () {
@@ -111,26 +111,3 @@ describe('Web initium generator', function () {
   //});
 
 });
-//
-//describe('Web initium generator: Gulp file', function(){
-//  var assertTaskExists = function (generator, taskName, features, done) {
-//    helpers.mockPrompt(generator, {
-//      features: features
-//    });
-//
-//    generator.run(function () {
-//      var gulpFile = fs.readFileSync('gulpfile.js', 'utf8');
-//      var regexGulp = new RegExp('gulp.task\\(\'' + taskName + '\'');
-//
-//      assert.ok(
-//        regexGulp.test(gulpFile),
-//        'gulpfile.js does not contain ' + taskName + ' task'
-//      );
-//      done();
-//    });
-//  };
-//
-//  it('should contain styles task without Sass included', function (done) {
-//    assertTaskExists(this.webapp, 'styles', [], done);
-//  });
-//});

@@ -1,6 +1,6 @@
 {
   "name": "generator-web-initium",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A yeoman generator that will help you bootstrap your webapp with gulp.",
   "main": "app/index.js",
   "files": [
