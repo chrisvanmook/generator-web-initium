@@ -2,11 +2,16 @@
   "name": "generator-web-initium",
   "version": "0.1.0",
   "description": "A yeoman generator that will help you bootstrap your webapp with gulp.",
+  "main": "app/index.js",
   "files": [
     "app",
     "router"
   ],
-  "main": "app/index.js",
+  "scripts": {
+    "start": "",
+    "test": "mocha --reporter spec --no-timeouts && npm run coverage",
+    "coverage": "./node_modules/.bin/istanbul cover -x 'test/**' ./node_modules/mocha/bin/_mocha -- --reporter dot"
+  },
   "keywords": [
     "yeoman-generator",
     "front-end",
@@ -16,13 +21,11 @@
     "starters"
   ],
   "dependencies": {
-    "fs-extra": "^0.18.0",
+    "fs-extra": "^0.26.2",
     "lodash": "^3.7.0",
-    "wiredep": "^2.2.2",
-    "yeoman-generator": "^0.19.1",
-    "yosay": "^1.0.3"
-  },
-  "peerDependencies": {
+    "wiredep": "^3.0.0-beta",
+    "yeoman-generator": "^0.21.1",
+    "yosay": "^1.0.3",
     "yo": ">=1.0.0",
     "gulp": ">=3.5.0"
   },
@@ -36,15 +39,11 @@
     "url": "https://github.com/chrisvanmook/generator-web-initium/issues"
   },
   "homepage": "https://github.com/chrisvanmook/generator-web-initium",
-  "scripts": {
-    "test": "mocha --reporter spec --no-timeouts && npm run coverage",
-    "coverage": "./node_modules/.bin/istanbul cover -x 'test/**' ./node_modules/mocha/bin/_mocha -- --reporter dot"
-  },
   "devDependencies": {
     "coveralls": "^2.11.2",
     "gulp-rename": "^1.2.2",
-    "istanbul": "^0.3.13",
+    "istanbul": "^0.4.1",
     "mocha": "^2.2.4",
-    "mocha-lcov-reporter": "0.0.2"
+    "mocha-lcov-reporter": "1.0.0"
   }
 }

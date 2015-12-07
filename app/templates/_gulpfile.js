@@ -6,9 +6,10 @@
 	var gulp = require('gulp'),
     plugins = require('gulp-load-plugins')();
 
-	/**
-	 * Put all your configurations here!
-	 */
+  /**
+   * Put all your configurations here!
+   */
+  console.log(templateEngine);
 	var config = {
  		src_dir: './src/', //your working directory
 		build_dir: './dist/', // the build directory

@@ -161,7 +161,7 @@ module.exports = function (config) {
         [answers.bump],
         ['jshint', 'templates', 'sass'],
         'pre-clean',
-        ['usemin', 'imagemin', 'copy'],
+        ['usemin', 'imagemin', 'favicon', 'copy'],
         callback);
     });
   });

@@ -1,0 +1,151 @@
+[
+  {
+    "type": "textfield",
+    "name": "appAuthor",
+    "message": "What is your name?"
+  },
+  {
+    "type": "textfield",
+    "name": "appName",
+    "message": "What is the name of your webapp?",
+    "default": "webapp"
+  },
+  {
+    "type": "textfield",
+    "name": "appDesc",
+    "message": "Describe your webapp:"
+  },
+  {
+    "type": "textfield",
+    "name": "appLicense",
+    "message": "License:",
+    "default": "MIT"
+  },
+  {
+    "type": "textfield",
+    "name": "appRepo",
+    "message": "Your git repository:"
+  },
+  {
+    "type": "textfield",
+    "name": "analyticsID",
+    "message": "What is your Google Analytics ID?"
+  },
+  {
+    "type": "list",
+    "name": "preprocessor",
+    "message": "Use sass as preprocessor?",
+    "choices": [
+      {
+        "name": "Yes",
+        "value": "sass",
+        "checked": true
+      },
+      {
+        "name": "No",
+        "value": "sass-no",
+        "checked": false
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "name": "templateEngine",
+    "message": "Which template engine would you like to use?",
+    "choices": [
+      {
+        "name": "Jade",
+        "value": "jade",
+        "checked": true
+      },
+      {
+        "name": "Swig (Twig)",
+        "value": "swig",
+        "checked": false
+      }
+    ]
+  },
+  {
+    "type": "checkbox",
+    "name": "javascript",
+    "message": "Which javascript libraries do you want to use",
+    "choices": [
+      {
+        "name": "jQuery",
+        "value": "usejQuery",
+        "checked": true
+      },
+      {
+        "name": "Modernizr",
+        "value": "useModernizr",
+        "checked": true
+      },
+      {
+        "name": "FastClick",
+        "value": "useFastClick",
+        "checked": true
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "name": "bundler",
+    "message": "Which module bundler would you like to use?",
+    "choices": [
+      {
+        "name": "None",
+        "value": "none",
+        "checked": false
+      },
+      {
+        "name": "Webpack",
+        "value": "webpack",
+        "checked": true
+      },
+      {
+        "name": "Browserify",
+        "value": "browserify",
+        "checked": false
+      },
+      {
+        "name": "RequireJS",
+        "value": "requirejs",
+        "checked": false
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "name": "es6",
+    "message": "Would you like to write your JavaScript in ES6",
+    "choices": [
+      {
+        "name": "Yes (use babel transpiler)",
+        "value": "yes",
+        "checked": false
+      },
+      {
+        "name": "No",
+        "value": "no",
+        "checked": true
+      }
+    ]
+  },
+  {
+    "type": "list",
+    "name": "imageConverter",
+    "message": "Which software are you using to process images with? (please have one of the options installed already, see readme for more info)",
+    "choices": [
+      {
+        "name": "ImageMagick",
+        "value": "useImageMagick",
+        "checked": true
+      },
+      {
+        "name": "GraphicsMagick",
+        "value": "useGraphicsMagick",
+        "checked": false
+      }
+    ]
+  }
+]

@@ -9,9 +9,10 @@ var mockPrompt = {
   appName: 'Test',
   appDesc: 'Blablabla',
   appLicense: 'Copyright',
-  appRepo: 'http://github.com/chrisvanmook/generator-web-infans.git',
+  appRepo: 'http://github.com/chrisvanmook/generator-web-initium.git',
   analyticsID: 'UA-12345678',
   preprocessor: ['sass'],
+  templateEngine: ['jade'],
   javascript: ['usejQuery']
 };
 
