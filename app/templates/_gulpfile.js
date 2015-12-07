@@ -9,7 +9,6 @@
   /**
    * Put all your configurations here!
    */
-  console.log(templateEngine);
 	var config = {
  		src_dir: './src/', //your working directory
 		build_dir: './dist/', // the build directory
