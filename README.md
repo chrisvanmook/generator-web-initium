@@ -1,7 +1,7 @@
 # generator-web-initium
-[![NPM info](https://nodei.co/npm/generator-web-initium.png?downloads=true)](https://nodei.co/npm/generator-web-initium.png?downloads=true)
+[![NPM info](https://nodei.co/npm/generator-web-initium.png?downloads=true)](https://www.npmjs.com/package/generator-web-initium)
 
-[![Build Status](https://travis-ci.org/chrisvanmook/generator-web-initium.svg?branch=master)](https://travis-ci.org/chrisvanmook/generator-web-initium) [![dependencies](https://david-dm.org/chrisvanmook/generator-web-initium.svg)](https://david-dm.org/chrisvanmook/generator-web-initium.svg) [![Coverage Status](https://coveralls.io/repos/chrisvanmook/generator-web-initium/badge.svg?branch=master)](https://coveralls.io/r/chrisvanmook/generator-web-initium?branch=master)
+[![Build Status](https://travis-ci.org/chrisvanmook/generator-web-initium.svg?branch=master)](https://travis-ci.org/chrisvanmook/generator-web-initium) [![dependencies(https://david-dm.org/chrisvanmook/generator-web-initium.svg)](https://david-dm.org/chrisvanmook/generator-web-initium.svg)](https://david-dm.org/chrisvanmook/generator-web-initium) [![Coverage Status](https://coveralls.io/repos/chrisvanmook/generator-web-initium/badge.svg?branch=master)](https://coveralls.io/r/chrisvanmook/generator-web-initium?branch=master)
 
 Web Initium is a yeoman generator that will help you bootstrap your webapp with gulp.
 Choose your favorite pre-processor, JS libraries etc... and let Web Initium do the rest.
